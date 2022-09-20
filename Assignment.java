@@ -4,7 +4,6 @@ public class Assignment {
     private Date dueDate;
     private boolean completed = false;
 
-
     private int type;
     int difficultly;
 
@@ -16,7 +15,7 @@ public class Assignment {
         this.course = course;
         this.dueDate = dueDate;
         this.type = type;
-        this.difficultly = difficultly;
+        setDifficultly(difficultly);
     }
 
     public void setName(String name) {
@@ -40,7 +39,12 @@ public class Assignment {
     }
 
     public void setDifficultly(int difficultly) {
-        this.difficultly = difficultly;
+        if (difficultly >= 1 && difficultly <= 5) {
+            this.difficultly = difficultly;
+        }else{
+            System.out.println("Difficult number is not valid set to deafault");
+            this.difficultly=1;
+        }
     }
 
     public String getName() {
