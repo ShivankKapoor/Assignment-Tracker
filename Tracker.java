@@ -42,12 +42,7 @@ public class Tracker {
         int size = track.size();
         for(int i=0;i<size;i++){
             Assignment Current = track.get(i);
-            boolean currentCompleted = Current.getCompleted();
-            if(currentCompleted){
-                System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"    COMPLETED");
-            }else{
-                System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"    INCOMPLETED");
-            }
+            System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"        "+Current.CompletedToString());
         }
         System.out.println();
     }

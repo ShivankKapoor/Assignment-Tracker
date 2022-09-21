@@ -66,6 +66,13 @@ public class Assignment {
     public boolean getCompleted() {
         return completed;
     }
+    public String CompletedToString(){
+        if(completed){
+            return ("COMPLETED");
+        }else{
+            return ("INCOMPLETED");
+        }
+    }
 
     public int getType() {
         return type;
