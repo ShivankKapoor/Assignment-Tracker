@@ -13,6 +13,7 @@ public class Tracker {
             System.out.println("1.Print Table");
             System.out.println("2.Add Assignment");
             System.out.println("3.Remove Assignment");
+            System.out.println("4. Toggle Status");
             int menuChoice = scan.nextInt();
             switch (menuChoice) {
                 case 0:
@@ -27,6 +28,9 @@ public class Tracker {
                 case 3:
                     removeAssignment();
                     break;
+                case 4:
+                    changeStatus();
+                    break;
                 default:
                     continue;
             }
@@ -34,7 +38,18 @@ public class Tracker {
     }
 
     private static void printTable() {
-        
+        System.out.println();
+        int size = track.size();
+        for(int i=0;i<size;i++){
+            Assignment Current = track.get(i);
+            boolean currentCompleted = Current.getCompleted();
+            if(currentCompleted){
+                System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"    COMPLETED");
+            }else{
+                System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"    INCOMPLETED");
+            }
+        }
+        System.out.println();
     }
 
     private static void addAssignment() {
@@ -44,7 +59,7 @@ public class Tracker {
 
         System.out.print("Is it 1.A Test 2.Homework 3.A Quiz: ");
         int intType = scan.nextInt();
-
+        scan.nextLine();
 
         System.out.print("\nCourse ID: ");
         String courseID = scan.nextLine();
@@ -65,5 +80,16 @@ public class Tracker {
 
     private static void removeAssignment() {
 
+    }
+
+    private static void changeStatus(){
+        System.out.println("Enter Assignment Number: ");
+        Scanner scan = new Scanner(System.in);
+        int id = scan.nextInt();
+        if(id>track.size()){
+            System.out.println("ID not valid");
+        }else{
+            track.get(id).toggleCompleted();
+        }
     }
 }

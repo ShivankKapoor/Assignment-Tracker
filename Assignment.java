@@ -33,6 +33,10 @@ public class Assignment {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+    
+    public void toggleCompleted(){
+        this.completed = !(this.completed);
+    }
 
     public void setType(int type) {
         this.type = type;
