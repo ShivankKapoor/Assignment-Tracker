@@ -74,7 +74,15 @@ public class Tracker {
     }
 
     private static void removeAssignment() {
-
+        System.out.println("Enter Assignment Number to remove (Enter -1 to cancle): ");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        if(choice==-1){
+        }else if(choice>track.size()){
+            System.out.println("Choice Invalid");
+        }else{
+            track.remove(choice);
+        }
     }
 
     private static void changeStatus(){
