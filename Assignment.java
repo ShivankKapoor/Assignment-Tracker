@@ -66,6 +66,7 @@ public class Assignment {
     public boolean getCompleted() {
         return completed;
     }
+
     public String CompletedToString(){
         if(completed){
             return ("COMPLETED");
@@ -78,8 +79,23 @@ public class Assignment {
         return type;
     }
 
+    public String getTypeString(){
+        if(getType()==1){
+            return ("Test");
+        }else if(getType()==2){
+            return ("Homework");
+        }else{
+            return ("Quiz");
+        }
+    }
+
     public int getDifficultly() {
         return difficultly;
+    }
+
+    public String toString(){
+        String r = (this.getName()+"       "+this.getCourse()+"     "+this.getTypeString()+"     "+this.getDate().dateToString()+"        "+this.CompletedToString());
+        return r;
     }
 
 }

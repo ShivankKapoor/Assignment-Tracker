@@ -42,7 +42,7 @@ public class Tracker {
         int size = track.size();
         for(int i=0;i<size;i++){
             Assignment Current = track.get(i);
-            System.out.println(i+".     "+Current.getName()+"       "+Current.getCourse()+"     "+Current.getDate().dateToString()+"        "+Current.CompletedToString());
+            System.out.println(i+".     "+Current.toString());
         }
         System.out.println();
     }
