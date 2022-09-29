@@ -52,6 +52,7 @@ public class Tracker {
     }
 
     private static void printTable() {
+        sort(track);
         System.out.println();
         int size = track.size();
         for (int i = 0; i < size; i++) {
@@ -122,5 +123,16 @@ public class Tracker {
         ObjectInputStream ois = new ObjectInputStream(fis);
         track = (ArrayList<Assignment>) ois.readObject();
         ois.close();
+    }
+
+    private static void sort(ArrayList<Assignment> x){
+        int n = x.size();
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (x.get(j).getDate().getDateValueNum() > x.get(j+1).getDate().getDateValueNum()) {
+                    Assignment temp = x.get(j);
+                    x.set(j,(x.get(j+1)));                 
+                    x.set(j+1,temp);
+                }
     }
 }
