@@ -36,7 +36,6 @@ public class Tracker {
                     saveAndQuit();
                     break;
                 case 1:
-                    clearScreen();
                     printTableFormated();
                     break;
                 case 2:
@@ -58,43 +57,44 @@ public class Tracker {
     }
 
     private static void printTableFormated() {
-        ArrayList<Assignment> completed = new ArrayList<Assignment>();
-        ArrayList<Assignment> incompleted = new ArrayList<Assignment>();
+        clearScreen();
+        sort(track);
+        ArrayList<Integer> completed = new ArrayList<Integer>();
+        ArrayList<Integer> incompleted = new ArrayList<Integer>();
         for (int i = 0; i < track.size(); i++) {
             Assignment Cur = track.get(i);
             if (Cur.getCompleted()) {
-                completed.add(Cur);
+                completed.add(i);
             } else {
-                incompleted.add(Cur);
+                incompleted.add(i);
             }
         }
         printHeader();
         printTable(incompleted);
         if (completed.size() > 0) {
-            System.out.println("--------------------------------------Completed--------------------------------------");
+            System.out.println("----------------------------------------Completed----------------------------------------");
             printTable(completed);
         }
     }
 
-    private static void printTable(ArrayList<Assignment> x) {
-        sort(x);
+    private static void printTable(ArrayList<Integer> x) {
         int size = x.size();
         for (int i = 0; i < size; i++) {
-            Assignment Current = x.get(i);
+            Assignment Current = track.get(x.get(i));
             String name = Current.getName();
             String course = Current.getCourse();
             String type = Current.getTypeString();
             String date = Current.getDate().dateToString();
             String status = Current.CompletedToString();
-            System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", i, name, course, type, date, status);
+            System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-12s | %-12s |%n", x.get(i), name, course, type, date, status);
         }
         System.out.println();
     }
 
     private static void printHeader() {
-        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", "INDEX", "NAME", "COURSE", "TYPE",
+        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
                 "DUE DATE", "STATUS");
-        System.out.println("-------------------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------------------");
     }
 
     private static void addAssignment() {
@@ -165,7 +165,7 @@ public class Tracker {
         int n = x.size();
         for (int i = 0; i < n - 1; i++)
             for (int j = 0; j < n - i - 1; j++)
-                if (x.get(j).getDate().getDateValueNum() > x.get(j + 1).getDate().getDateValueNum()) {
+                if (x.get(j).getDate().getDateValueNum() < x.get(j + 1).getDate().getDateValueNum()) {
                     Assignment temp = x.get(j);
                     x.set(j, (x.get(j + 1)));
                     x.set(j + 1, temp);
@@ -173,7 +173,8 @@ public class Tracker {
     }
 
     public static void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        for (int i = 0; i < 50; ++i) System.out.println();
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
     }
 }
