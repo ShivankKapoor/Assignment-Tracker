@@ -36,8 +36,8 @@ public class Tracker {
                     saveAndQuit();
                     break;
                 case 1:
-                    printHeader();
-                    printTable(track);
+                    clearScreen();
+                    printTableFormated();
                     break;
                 case 2:
                     addAssignment();
@@ -54,6 +54,25 @@ public class Tracker {
                 default:
                     continue;
             }
+        }
+    }
+
+    private static void printTableFormated() {
+        ArrayList<Assignment> completed = new ArrayList<Assignment>();
+        ArrayList<Assignment> incompleted = new ArrayList<Assignment>();
+        for (int i = 0; i < track.size(); i++) {
+            Assignment Cur = track.get(i);
+            if (Cur.getCompleted()) {
+                completed.add(Cur);
+            } else {
+                incompleted.add(Cur);
+            }
+        }
+        printHeader();
+        printTable(incompleted);
+        if (completed.size() > 0) {
+            System.out.println("--------------------------------------Completed--------------------------------------");
+            printTable(completed);
         }
     }
 
