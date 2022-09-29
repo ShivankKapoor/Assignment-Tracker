@@ -10,12 +10,13 @@ import java.util.Scanner;
 
 public class Tracker {
     private static ArrayList<Assignment> track = new ArrayList<Assignment>();
+    private static String fileName = "save_data.tmp";
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
 
-        File f = new File("t.tmp");
+        File f = new File(fileName);
         if (f.exists() && !f.isDirectory()) {
             openAndRun();
         }
@@ -110,14 +111,14 @@ public class Tracker {
     }
 
     private static void saveAndQuit() throws IOException {
-        FileOutputStream fos = new FileOutputStream("t.tmp");
+        FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(track);
         oos.close();
     }
 
     private static void openAndRun() throws IOException, ClassNotFoundException {
-        FileInputStream fis = new FileInputStream("t.tmp");
+        FileInputStream fis = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(fis);
         track = (ArrayList<Assignment>) ois.readObject();
         ois.close();
