@@ -22,11 +22,12 @@ public class Tracker {
         }
         while (run) {
             System.out.println("Menu Choices: ");
-            System.out.println("0. Quit");
-            System.out.println("1.Print Table");
-            System.out.println("2.Add Assignment");
-            System.out.println("3.Remove Assignment");
-            System.out.println("4. Toggle Status");
+            System.out.println("0.  Quit");
+            System.out.println("1.  Print Table");
+            System.out.println("2.  Add Assignment");
+            System.out.println("3.  Remove Assignment");
+            System.out.println("4.  Toggle Status");
+            System.out.println("5.  Clear Screen");
             int menuChoice = scan.nextInt();
             switch (menuChoice) {
                 case 0:
@@ -34,7 +35,8 @@ public class Tracker {
                     saveAndQuit();
                     break;
                 case 1:
-                    printTable();
+                   printHeader();
+                   printTable(track);
                     break;
                 case 2:
                     addAssignment();
@@ -45,22 +47,35 @@ public class Tracker {
                 case 4:
                     changeStatus();
                     break;
+                case 5:
+                    clearScreen();
+                    break;
                 default:
                     continue;
             }
         }
     }
 
-    private static void printTable() {
-        sort(track);
-        System.out.println();
-        int size = track.size();
+    private static void printTable(ArrayList<Assignment> x) {
+        sort(x);
+        int size = x.size();
         for (int i = 0; i < size; i++) {
-            Assignment Current = track.get(i);
-            System.out.println(i + ".     " + Current.toString());
+            Assignment Current = x.get(i);
+            String name = Current.getName();
+            String course = Current.getCourse();
+            String type = Current.getTypeString();
+            String date = Current.getDate().dateToString();
+            String status = Current.CompletedToString();
+            System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", i, name, course, type, date, status);
         }
         System.out.println();
     }
+
+    private static void printHeader(){
+        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", "INDEX", "NAME", "COURSE", "TYPE", "DUE DATE", "STATUS");
+        System.out.println("-------------------------------------------------------------------------------------");
+    }
+
 
     private static void addAssignment() {
         Scanner scan = new Scanner(System.in);
@@ -92,7 +107,7 @@ public class Tracker {
         System.out.println("Enter Assignment Number to remove (Enter -1 to cancle): ");
         Scanner scan = new Scanner(System.in);
         int choice = scan.nextInt();
-        if (choice == -1) {
+        if (choice <= -1) {
         } else if (choice > track.size()) {
             System.out.println("Choice Invalid");
         } else {
@@ -135,4 +150,9 @@ public class Tracker {
                     x.set(j+1,temp);
                 }
     }
+
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }  
 }
