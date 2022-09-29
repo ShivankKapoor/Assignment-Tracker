@@ -90,13 +90,13 @@ public class Tracker {
             String type = Current.getTypeString();
             String date = Current.getDate().dateToString();
             String status = Current.CompletedToString();
-            System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-12s | %-12s |%n", x.get(i), name, course, type, date, status);
+            System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", x.get(i), name, course, type, date, status);
         }
         System.out.println();
     }
 
     private static void printHeader() {
-        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
+        System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
                 "DUE DATE", "STATUS");
         System.out.println("-----------------------------------------------------------------------------------------");
     }
@@ -169,7 +169,7 @@ public class Tracker {
         int n = x.size();
         for (int i = 0; i < n - 1; i++)
             for (int j = 0; j < n - i - 1; j++)
-                if (x.get(j).getDate().getDateValueNum() < x.get(j + 1).getDate().getDateValueNum()) {
+                if (x.get(j).getDate().getDateValueNum() > x.get(j + 1).getDate().getDateValueNum()) {
                     Assignment temp = x.get(j);
                     x.set(j, (x.get(j + 1)));
                     x.set(j + 1, temp);
