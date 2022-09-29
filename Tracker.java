@@ -37,15 +37,19 @@ public class Tracker {
                     break;
                 case 1:
                     printTableFormated();
+                    saveAndQuit();
                     break;
                 case 2:
                     addAssignment();
+                    saveAndQuit();
                     break;
                 case 3:
                     removeAssignment();
+                    saveAndQuit();
                     break;
                 case 4:
                     changeStatus();
+                    saveAndQuit();
                     break;
                 case 5:
                     clearScreen();
@@ -102,7 +106,7 @@ public class Tracker {
         System.out.print("Assignment Name: ");
         String name = scan.nextLine();
 
-        System.out.print("Is it 1.A Test 2.Homework 3.A Quiz: ");
+        System.out.print("Is it a \n1.Test \n2.Homework \n3.Quiz: \n");
         int intType = scan.nextInt();
         scan.nextLine();
 

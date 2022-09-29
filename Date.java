@@ -19,8 +19,8 @@ public class Date implements Serializable {
 
     public void updateDateValueNum(){
         dateValueNum += (day);
-        dateValueNum += (month*10);
-        dateValueNum += (year*100);
+        dateValueNum += (month*100);
+        dateValueNum += (year*10000);
     }
 
     public int getDateValueNum() {
