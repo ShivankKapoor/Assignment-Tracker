@@ -1,3 +1,4 @@
+
 // Writen by Shivank Kapoor
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,8 +36,8 @@ public class Tracker {
                     saveAndQuit();
                     break;
                 case 1:
-                   printHeader();
-                   printTable(track);
+                    printHeader();
+                    printTable(track);
                     break;
                 case 2:
                     addAssignment();
@@ -71,11 +72,11 @@ public class Tracker {
         System.out.println();
     }
 
-    private static void printHeader(){
-        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", "INDEX", "NAME", "COURSE", "TYPE", "DUE DATE", "STATUS");
+    private static void printHeader() {
+        System.out.printf("| %-5s | %-20s | %-12s | %-8s | %-9s | %-12s |%n", "INDEX", "NAME", "COURSE", "TYPE",
+                "DUE DATE", "STATUS");
         System.out.println("-------------------------------------------------------------------------------------");
     }
-
 
     private static void addAssignment() {
         Scanner scan = new Scanner(System.in);
@@ -104,7 +105,7 @@ public class Tracker {
     }
 
     private static void removeAssignment() {
-        System.out.println("Enter Assignment Number to remove (Enter -1 to cancle): ");
+        System.out.println("Enter Assignment Number to remove (-1 to Cancle): ");
         Scanner scan = new Scanner(System.in);
         int choice = scan.nextInt();
         if (choice <= -1) {
@@ -116,11 +117,12 @@ public class Tracker {
     }
 
     private static void changeStatus() {
-        System.out.println("Enter Assignment Number: ");
+        System.out.println("Enter Assignment Number (-1 to Cancle): ");
         Scanner scan = new Scanner(System.in);
         int id = scan.nextInt();
         if (id > track.size()) {
             System.out.println("ID not valid");
+        } else if (id == -1) {
         } else {
             track.get(id).toggleCompleted();
         }
@@ -140,19 +142,19 @@ public class Tracker {
         ois.close();
     }
 
-    private static void sort(ArrayList<Assignment> x){
+    private static void sort(ArrayList<Assignment> x) {
         int n = x.size();
         for (int i = 0; i < n - 1; i++)
             for (int j = 0; j < n - i - 1; j++)
-                if (x.get(j).getDate().getDateValueNum() > x.get(j+1).getDate().getDateValueNum()) {
+                if (x.get(j).getDate().getDateValueNum() > x.get(j + 1).getDate().getDateValueNum()) {
                     Assignment temp = x.get(j);
-                    x.set(j,(x.get(j+1)));                 
-                    x.set(j+1,temp);
+                    x.set(j, (x.get(j + 1)));
+                    x.set(j + 1, temp);
                 }
     }
 
-    public static void clearScreen() {  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }  
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 }
