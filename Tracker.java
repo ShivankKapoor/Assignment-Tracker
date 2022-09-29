@@ -1,12 +1,24 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Tracker {
-   private static ArrayList<Assignment> track = new ArrayList<Assignment>();
+    private static ArrayList<Assignment> track = new ArrayList<Assignment>();
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, ClassNotFoundException {
         Scanner scan = new Scanner(System.in);
         boolean run = true;
+
+        File f = new File("t.tmp");
+        if (f.exists() && !f.isDirectory()) {
+            openAndRun();
+        }
         while (run) {
             System.out.println("Menu Choices: ");
             System.out.println("0. Quit");
@@ -17,7 +29,8 @@ public class Tracker {
             int menuChoice = scan.nextInt();
             switch (menuChoice) {
                 case 0:
-                    run=false;
+                    run = false;
+                    saveAndQuit();
                     break;
                 case 1:
                     printTable();
@@ -40,9 +53,9 @@ public class Tracker {
     private static void printTable() {
         System.out.println();
         int size = track.size();
-        for(int i=0;i<size;i++){
+        for (int i = 0; i < size; i++) {
             Assignment Current = track.get(i);
-            System.out.println(i+".     "+Current.toString());
+            System.out.println(i + ".     " + Current.toString());
         }
         System.out.println();
     }
@@ -69,30 +82,44 @@ public class Tracker {
         System.out.println("\nOn a scale from 1-5 how hard is this going to be: ");
         int dif = scan.nextInt();
 
-        Date dueDate = new Date(month,day,year);
-        track.add(new Assignment(name,courseID,dueDate,intType,dif));
+        Date dueDate = new Date(month, day, year);
+        track.add(new Assignment(name, courseID, dueDate, intType, dif));
     }
 
     private static void removeAssignment() {
         System.out.println("Enter Assignment Number to remove (Enter -1 to cancle): ");
         Scanner scan = new Scanner(System.in);
         int choice = scan.nextInt();
-        if(choice==-1){
-        }else if(choice>track.size()){
+        if (choice == -1) {
+        } else if (choice > track.size()) {
             System.out.println("Choice Invalid");
-        }else{
+        } else {
             track.remove(choice);
         }
     }
 
-    private static void changeStatus(){
+    private static void changeStatus() {
         System.out.println("Enter Assignment Number: ");
         Scanner scan = new Scanner(System.in);
         int id = scan.nextInt();
-        if(id>track.size()){
+        if (id > track.size()) {
             System.out.println("ID not valid");
-        }else{
+        } else {
             track.get(id).toggleCompleted();
         }
+    }
+
+    private static void saveAndQuit() throws IOException {
+        FileOutputStream fos = new FileOutputStream("t.tmp");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(track);
+        oos.close();
+    }
+
+    private static void openAndRun() throws IOException, ClassNotFoundException {
+        FileInputStream fis = new FileInputStream("t.tmp");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        track = (ArrayList<Assignment>) ois.readObject();
+        ois.close();
     }
 }

@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Date {
+public class Date implements Serializable {
     private int month = 0;
     private int day = 0;
     private int year = 0;
