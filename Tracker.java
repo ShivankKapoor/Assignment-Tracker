@@ -9,11 +9,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Tracker {
+import javax.swing.JFrame;
+
+public class Tracker extends JFrame {
     private static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
+
         Scanner scan = new Scanner(System.in);
         boolean run = true;
 
