@@ -76,7 +76,7 @@ public class Tracker {
         printHeader();
         printTable(incompleted);
         if (completed.size() > 0) {
-            System.out.println("----------------------------------------Completed----------------------------------------");
+            System.out.println("--------------------------------------------------Completed--------------------------------------------------");
             printTable(completed);
         }
     }
@@ -98,7 +98,7 @@ public class Tracker {
     private static void printHeader() {
         System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
                 "DUE DATE", "STATUS");
-        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------");
     }
 
     private static void addAssignment() {
