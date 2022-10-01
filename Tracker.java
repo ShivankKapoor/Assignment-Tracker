@@ -11,12 +11,20 @@ import java.util.Scanner;
 
 import javax.swing.JFrame;
 
+
 public class Tracker extends JFrame {
+    public Tracker(){
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1000,600);
+        this.setVisible(true);
+        
+    }
+    
     private static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
-
+        Tracker t = new Tracker();
         Scanner scan = new Scanner(System.in);
         boolean run = true;
 
