@@ -1,14 +1,19 @@
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 public class GUI extends JFrame {
+    JButton addButton = new JButton("Add");
+    JButton removeButton = new JButton("Remove");
+    JButton editButton = new JButton("Edit");
+
     public GUI() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setSize(1000, 600);
+        this.setTitle("Assignment Tracker");
 
-        JButton addButton = new JButton("Add");
-        JButton removeButton = new JButton("Remove");
-        JButton editButton = new JButton("Edit");
+        
 
         this.setLayout(null);
 
@@ -21,7 +26,12 @@ public class GUI extends JFrame {
         this.add(editButton);
 
         this.setVisible(true);
-    }
 
+        addButton.addActionListener(new ActionListener() { 
+            public void actionPerformed(ActionEvent e) { 
+              System.out.println("YO");
+            } 
+          } );
+    }
 
 }
