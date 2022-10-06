@@ -12,12 +12,14 @@ public class GUI extends JFrame {
         JButton addButton = new JButton("Add");
         JButton removeButton = new JButton("Remove");
         JButton editButton = new JButton("Edit");
+        
 
         this.setLayout(null);
 
         addButton.setBounds(40, 100, 100, 60);
         removeButton.setBounds(40, 200, 100, 60);
         editButton.setBounds(40, 300, 100, 60);
+        //types.setBounds()
 
         this.add(addButton);
         this.add(removeButton);
