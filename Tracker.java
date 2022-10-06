@@ -27,43 +27,6 @@ public class Tracker extends JFrame {
         if (f.exists() && !f.isDirectory()) {
             openAndRun();
         }
-        while (run) {
-            System.out.println("Menu Choices: ");
-            System.out.println("0.  Quit");
-            System.out.println("1.  Print Table");
-            System.out.println("2.  Add Assignment");
-            System.out.println("3.  Remove Assignment");
-            System.out.println("4.  Toggle Status");
-            System.out.println("5.  Clear Screen");
-            int menuChoice = scan.nextInt();
-            switch (menuChoice) {
-                case 0:
-                    run = false;
-                    saveAndQuit();
-                    break;
-                case 1:
-                    printTableFormated();
-                    saveAndQuit();
-                    break;
-                case 2:
-                    addAssignment();
-                    saveAndQuit();
-                    break;
-                case 3:
-                    removeAssignment();
-                    saveAndQuit();
-                    break;
-                case 4:
-                    changeStatus();
-                    saveAndQuit();
-                    break;
-                case 5:
-                    clearScreen();
-                    break;
-                default:
-                    continue;
-            }
-        }
     }
 
     private static void printTableFormated() {

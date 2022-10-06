@@ -18,7 +18,7 @@ public class GUI extends JFrame {
         addButton.setBounds(40, 100, 100, 60);
         removeButton.setBounds(40, 200, 100, 60);
         editButton.setBounds(40, 300, 100, 60);
-        
+
         this.add(addButton);
         this.add(removeButton);
         this.add(editButton);
@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                
+                Add_GUI addFrame = new Add_GUI();
             }
         });
     }
