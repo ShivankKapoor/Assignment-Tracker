@@ -20,7 +20,8 @@ public class Add_GUI extends JFrame{
         JComboBox types = new JComboBox<String>(typeOfAssignments);
         JLabel typesLabel = new JLabel("Assignment Type:");
         
-
+        JTextField courseNameField = new JTextField();
+        JLabel courseNameLabel = new JLabel("Couse Name:");
 
         nameTxtField.setBounds(225, 112, 165, 25);
         nameLabel.setBounds(100, 100, 150, 50);
@@ -28,10 +29,15 @@ public class Add_GUI extends JFrame{
         types.setBounds(225, 162, 150, 30);
         typesLabel.setBounds(100,150,150,50);
 
+        courseNameField.setBounds(225,212,165,25);
+        courseNameLabel.setBounds(100, 202, 150, 50);
+
         this.add(nameTxtField);
         this.add(nameLabel);
         this.add(types);
         this.add(typesLabel);
+        this.add(courseNameField);
+        this.add(courseNameLabel);
         
         this.setVisible(true);
     }
