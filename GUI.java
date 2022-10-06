@@ -1,11 +1,10 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
+import javax.swing.*;
 
 public class GUI extends JFrame {
-    public GUI(){
+    public GUI() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setSize(1000,600);
+        this.setSize(1000, 600);
 
         JButton addButton = new JButton("Add");
         JButton removeButton = new JButton("Remove");
@@ -15,7 +14,7 @@ public class GUI extends JFrame {
 
         addButton.setBounds(40, 100, 100, 60);
         removeButton.setBounds(40, 200, 100, 60);
-        editButton.setBounds(40,300,100,60);
+        editButton.setBounds(40, 300, 100, 60);
 
         this.add(addButton);
         this.add(removeButton);
@@ -23,5 +22,6 @@ public class GUI extends JFrame {
 
         this.setVisible(true);
     }
-    
+
+
 }
