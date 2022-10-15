@@ -94,7 +94,8 @@ public class Date implements Serializable {
         return year;
     }
 
-    public String dateToString() {
+    @Override
+    public String toString() {
         String dateString = (getMonth() + "-" + getDay() + "-" + getYear());
         return dateString;
     }

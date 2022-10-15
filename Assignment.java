@@ -7,13 +7,13 @@ public class Assignment implements Serializable {
     private Date dueDate;
     private boolean completed = false;
 
-    private int type;
+    private String type;
     int difficultly;
 
     public Assignment() {
     }
 
-    public Assignment(String name, String course, Date dueDate, int type, int difficultly) {
+    public Assignment(String name, String course, Date dueDate, String type, int difficultly) {
         this.name = name;
         this.course = course;
         this.dueDate = dueDate;
@@ -41,7 +41,7 @@ public class Assignment implements Serializable {
         this.completed = !(this.completed);
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -78,18 +78,12 @@ public class Assignment implements Serializable {
         }
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
     public String getTypeString(){
-        if(getType()==1){
-            return ("Test");
-        }else if(getType()==2){
-            return ("Homework");
-        }else{
-            return ("Quiz");
-        }
+        return type;
     }
 
     public int getDifficultly() {
@@ -97,7 +91,7 @@ public class Assignment implements Serializable {
     }
 
     public String toString(){
-        String r = (this.getName()+"       "+this.getCourse()+"     "+this.getTypeString()+"     "+this.getDate().dateToString()+"        "+this.CompletedToString());
+        String r = (this.getName()+"       "+this.getCourse()+"     "+this.getTypeString()+"     "+this.getDate().toString()+"        "+this.CompletedToString());
         return r;
     }
 

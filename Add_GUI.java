@@ -1,5 +1,5 @@
-import java.util.*;
 import javax.swing.*;
+import java.awt.event.*;
 
 public class Add_GUI extends JFrame {
 
@@ -46,10 +46,10 @@ public class Add_GUI extends JFrame {
         yearField.setBounds(325, 252, 50, 25);
         dateLabel.setBounds(100, 240, 150, 50);
 
-        asgnmtDiffBox.setBounds(225,292,75,30);
+        asgnmtDiffBox.setBounds(225, 292, 75, 30);
         difLabel.setBounds(100, 280, 150, 50);
 
-        addAssignment.setBounds(200,575,100,50);
+        addAssignment.setBounds(200, 575, 100, 50);
 
         this.add(addAssignment);
         this.add(difLabel);
@@ -66,5 +66,84 @@ public class Add_GUI extends JFrame {
         this.add(courseNameLabel);
 
         this.setVisible(true);
+
+        addAssignment.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String name = nameTxtField.getText();
+                String type = (String) types.getSelectedItem();
+                String courseName = courseNameField.getText();
+
+                String rawInputDay = dayField.getText();
+                int day = convertDay(rawInputDay);
+
+                String rawInputMonth = monthField.getText();
+                int month = convertMonth(rawInputMonth);
+
+                String rawInputYear = yearField.getText();
+                int year = convertYear(rawInputYear);
+
+                Date dueDate = new Date(month, day, year);
+                
+                int difficultly = (int) asgnmtDiffBox.getSelectedItem();
+
+                Assignment temp = new Assignment(name,courseName,dueDate,type,difficultly);
+                Tracker.track.add(temp);
+
+                Tracker.printTableFormated();
+
+                setVisible(false);
+                dispose(); 
+                
+            }
+        });
+    }
+
+    private int convertDay(String rawInput) {
+        if (checkIfInt(rawInput)) {
+            return (Integer.parseInt(rawInput));
+        }
+        return Date.getCurrentDate().getDay();
+
+    }
+
+    private int convertMonth(String rawInput) {
+        if (checkIfInt(rawInput)) {
+            return (Integer.parseInt(rawInput));
+        }
+        return Date.getCurrentDate().getMonth();
+
+    }
+
+    private int convertYear(String rawInput) {
+        if (checkIfInt(rawInput)) {
+            return (Integer.parseInt(rawInput));
+        }
+        return Date.getCurrentDate().getYear();
+
+    }
+
+
+    private boolean checkIfInt(String what) {
+        if (what == null) {
+            return false;
+        }
+        int length = what.length();
+        if (length == 0) {
+            return false;
+        }
+        int i = 0;
+        if (what.charAt(0) == '-') {
+            if (length == 1) {
+                return false;
+            }
+            i = 1;
+        }
+        for (; i < length; i++) {
+            char c = what.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
     }
 }

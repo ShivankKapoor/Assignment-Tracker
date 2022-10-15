@@ -15,7 +15,7 @@ import javax.swing.JFrame;
 public class Tracker extends JFrame {
     
     
-    private static ArrayList<Assignment> track = new ArrayList<Assignment>();
+    public static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
@@ -29,7 +29,7 @@ public class Tracker extends JFrame {
         }
     }
 
-    private static void printTableFormated() {
+    public static void printTableFormated() {
         clearScreen();
         sort(track);
         ArrayList<Integer> completed = new ArrayList<Integer>();
@@ -57,7 +57,7 @@ public class Tracker extends JFrame {
             String name = Current.getName();
             String course = Current.getCourse();
             String type = Current.getTypeString();
-            String date = Current.getDate().dateToString();
+            String date = Current.getDate().toString();
             String status = Current.CompletedToString();
             System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", x.get(i), name, course, type, date, status);
         }
@@ -70,31 +70,6 @@ public class Tracker extends JFrame {
         System.out.println("------------------------------------------------------------------------------------------------------------");
     }
 
-    private static void addAssignment() {
-        Scanner scan = new Scanner(System.in);
-        System.out.print("Assignment Name: ");
-        String name = scan.nextLine();
-
-        System.out.print("Is it a \n1.Test \n2.Homework \n3.Quiz: \n");
-        int intType = scan.nextInt();
-        scan.nextLine();
-
-        System.out.print("\nCourse ID: ");
-        String courseID = scan.nextLine();
-
-        System.out.println("\nEnter Month: ");
-        int month = scan.nextInt();
-        System.out.println("\nEnter Day: ");
-        int day = scan.nextInt();
-        System.out.println("\nEnter Year: ");
-        int year = scan.nextInt();
-
-        System.out.println("\nOn a scale from 1-5 how hard is this going to be: ");
-        int dif = scan.nextInt();
-
-        Date dueDate = new Date(month, day, year);
-        track.add(new Assignment(name, courseID, dueDate, intType, dif));
-    }
 
     private static void removeAssignment() {
         System.out.println("Enter Assignment Number to remove (-1 to Cancle): ");
