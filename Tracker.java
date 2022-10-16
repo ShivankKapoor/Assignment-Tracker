@@ -17,13 +17,20 @@ public class Tracker extends JFrame {
     
     public static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
+    static GUI x;
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
         File f = new File(fileName);
         if (f.exists() && !f.isDirectory()) {
             openAndRun();
         }
-        GUI x = new GUI();
+        x = new GUI();
+    }
+
+    public static void refresh(){
+        x.setVisible(false);
+        x.dispose();
+        x = new GUI();
     }
 
     public static void printTableFormated() {

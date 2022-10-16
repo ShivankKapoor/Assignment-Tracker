@@ -98,6 +98,7 @@ public class Add_GUI extends JFrame {
                     
                     e1.printStackTrace();
                 }
+                Tracker.refresh();
                 setVisible(false);
                 dispose(); 
                 
