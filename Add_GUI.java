@@ -88,9 +88,7 @@ public class Add_GUI extends JFrame {
                 int difficultly = (int) asgnmtDiffBox.getSelectedItem();
 
                 Assignment temp = new Assignment(name,courseName,dueDate,type,difficultly);
-                Tracker.track.add(temp);
-
-                Tracker.printTableFormated();
+                Tracker.addAssignment(temp);
 
                 try {
                     Tracker.saveAndQuit();

@@ -15,9 +15,9 @@ import javax.swing.JFrame;
 public class Tracker extends JFrame {
     
     
-    public static ArrayList<Assignment> track = new ArrayList<Assignment>();
+    private static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
-    static GUI x;
+    private static GUI x;
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
         File f = new File(fileName);
@@ -31,78 +31,6 @@ public class Tracker extends JFrame {
         x.setVisible(false);
         x.dispose();
         x = new GUI();
-    }
-
-    public static void printTableFormated() {
-        clearScreen();
-        sort(track);
-        ArrayList<Integer> completed = new ArrayList<Integer>();
-        ArrayList<Integer> incompleted = new ArrayList<Integer>();
-        for (int i = 0; i < track.size(); i++) {
-            Assignment Cur = track.get(i);
-            if (Cur.getCompleted()) {
-                completed.add(i);
-            } else {
-                incompleted.add(i);
-            }
-        }
-        printHeader();
-        printTable(incompleted);
-        if (completed.size() > 0) {
-            System.out.println("--------------------------------------------------Completed--------------------------------------------------");
-            printTable(completed);
-        }
-    }
-
-    private static void printTable(ArrayList<Integer> x) {
-        int size = x.size();
-        for (int i = 0; i < size; i++) {
-            Assignment Current = track.get(x.get(i));
-            String name = Current.getName();
-            String course = Current.getCourse();
-            String type = Current.getTypeString();
-            String date = Current.getDate().toString();
-            String status = Current.CompletedToString();
-            System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", x.get(i), name, course, type, date, status);
-        }
-        System.out.println();
-    }
-
-    private static void printHeader() {
-        System.out.printf("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
-                "DUE DATE", "STATUS");
-        System.out.println("------------------------------------------------------------------------------------------------------------");
-    }
-
-    public static String getHeader() {
-        String r = String.format("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
-                "DUE DATE", "STATUS","------------------------------------------------------------------------------------------------------------");
-        return r;
-    }
-
-
-    private static void removeAssignment() {
-        System.out.println("Enter Assignment Number to remove (-1 to Cancle): ");
-        Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
-        if (choice <= -1) {
-        } else if (choice > track.size()) {
-            System.out.println("Choice Invalid");
-        } else {
-            track.remove(choice);
-        }
-    }
-
-    private static void changeStatus() {
-        System.out.println("Enter Assignment Number (-1 to Cancle): ");
-        Scanner scan = new Scanner(System.in);
-        int id = scan.nextInt();
-        if (id > track.size()) {
-            System.out.println("ID not valid");
-        } else if (id == -1) {
-        } else {
-            track.get(id).toggleCompleted();
-        }
     }
 
     public static void saveAndQuit() throws IOException {
@@ -130,10 +58,9 @@ public class Tracker extends JFrame {
                 }
     }
 
-    public static void clearScreen() {
-        for (int i = 0; i < 50; ++i) System.out.println();
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
+    public static void addAssignment(Assignment what){
+        track.add(what);
+        sort(track);
     }
 
     public static String[][] toStringArray(){
