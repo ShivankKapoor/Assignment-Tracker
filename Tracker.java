@@ -19,14 +19,11 @@ public class Tracker extends JFrame {
     private static String fileName = "save_data.tmp";
 
     public static void main(String args[]) throws IOException, ClassNotFoundException {
-        GUI x = new GUI();
-        Scanner scan = new Scanner(System.in);
-        boolean run = true;
-
         File f = new File(fileName);
         if (f.exists() && !f.isDirectory()) {
             openAndRun();
         }
+        GUI x = new GUI();
     }
 
     public static void printTableFormated() {
@@ -70,6 +67,12 @@ public class Tracker extends JFrame {
         System.out.println("------------------------------------------------------------------------------------------------------------");
     }
 
+    public static String getHeader() {
+        String r = String.format("| %-5s | %-25s | %-25s | %-8s | %-12s | %-12s |%n", "I.D #", "NAME", "COURSE", "TYPE",
+                "DUE DATE", "STATUS","------------------------------------------------------------------------------------------------------------");
+        return r;
+    }
+
 
     private static void removeAssignment() {
         System.out.println("Enter Assignment Number to remove (-1 to Cancle): ");
@@ -95,7 +98,7 @@ public class Tracker extends JFrame {
         }
     }
 
-    private static void saveAndQuit() throws IOException {
+    public static void saveAndQuit() throws IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(track);
@@ -124,5 +127,20 @@ public class Tracker extends JFrame {
         for (int i = 0; i < 50; ++i) System.out.println();
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
+    }
+
+    public static String[][] toStringArray(){
+        String[][] r = new String[track.size()][7];
+        for(int i =0;i<track.size();i++){
+            System.out.println(track.get(i).toString());
+            r[i][0] = i+"";
+            r[i][1]= track.get(i).getName();
+            r[i][2]= track.get(i).getCourse();
+            r[i][3]= track.get(i).getTypeString();
+            r[i][4]= track.get(i).getDate().toString();
+            r[i][5]= track.get(i).CompletedToString();
+            r[i][6]= track.get(i).getDifficultlyString();
+        }
+        return r;
     }
 }

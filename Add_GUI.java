@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 public class Add_GUI extends JFrame {
 
@@ -91,6 +92,12 @@ public class Add_GUI extends JFrame {
 
                 Tracker.printTableFormated();
 
+                try {
+                    Tracker.saveAndQuit();
+                } catch (IOException e1) {
+                    
+                    e1.printStackTrace();
+                }
                 setVisible(false);
                 dispose(); 
                 

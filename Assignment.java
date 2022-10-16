@@ -89,6 +89,9 @@ public class Assignment implements Serializable {
     public int getDifficultly() {
         return difficultly;
     }
+    public String getDifficultlyString() {
+        return difficultly+"";
+    }
 
     public String toString(){
         String r = (this.getName()+"       "+this.getCourse()+"     "+this.getTypeString()+"     "+this.getDate().toString()+"        "+this.CompletedToString());
