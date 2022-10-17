@@ -29,7 +29,7 @@ public class Date implements Serializable {
 
     public static void updateCurrentTime() {
         currentTime = LocalDate.now();
-        System.out.println(currentTime.getDayOfMonth());
+        //System.out.println(currentTime.getDayOfMonth());
         currentDate = new Date(currentTime.getMonthValue(), currentTime.getDayOfMonth(), currentTime.getYear());
     }
 
@@ -39,7 +39,7 @@ public class Date implements Serializable {
 
     public void setMonth(int month) {
         if (month > 12 || month < 1) {
-            System.out.println("Month invalid Error");
+            //System.out.println("Month invalid Error");
             this.month = 1;
         } else {
             this.month = month;
@@ -49,24 +49,24 @@ public class Date implements Serializable {
     public void setDay(int day) {
         this.day = day;
         if (day < 1) {
-            System.out.println("Invalid Day");
+           // System.out.println("Invalid Day");
             this.day = 1;
         } else {
             if (month == 0) { // Month Not set
-                System.out.println("Month must be set first");
+                //System.out.println("Month must be set first");
             } else if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) { // Month has 31 days
                 if (day > 31) {
-                    System.out.println("Invalid Day");
+                    //System.out.println("Invalid Day");
                     this.day = 1;
                 }
             } else if (month == 2) { // Month has 28 days and is affected by leap year
                 if (day > 29) {
-                    System.out.println("Invalid Day");
+                    //System.out.println("Invalid Day");
                     this.day = 1;
                 }
             } else { // Month has 30 days
                 if (day > 31) {
-                    System.out.println("Invalid Day");
+                    //System.out.println("Invalid Day");
                     this.day = 1;
                 }
             }

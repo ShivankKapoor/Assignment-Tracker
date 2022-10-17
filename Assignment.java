@@ -49,7 +49,7 @@ public class Assignment implements Serializable {
         if (difficultly >= 1 && difficultly <= 5) {
             this.difficultly = difficultly;
         }else{
-            System.out.println("Difficult number is not valid set to deafault");
+            //System.out.println("Difficult number is not valid set to deafault");
             this.difficultly=1;
         }
     }

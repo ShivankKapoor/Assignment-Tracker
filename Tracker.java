@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import javax.swing.JFrame;
 
@@ -66,7 +66,6 @@ public class Tracker extends JFrame {
     public static String[][] toStringArray(){
         String[][] r = new String[track.size()][7];
         for(int i =0;i<track.size();i++){
-            System.out.println(track.get(i).toString());
             r[i][0] = i+"";
             r[i][1]= track.get(i).getName();
             r[i][2]= track.get(i).getCourse();

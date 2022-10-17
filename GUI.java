@@ -24,14 +24,14 @@ public class GUI extends JFrame {
 
         JButton addButton = new JButton("Add");
         JButton removeButton = new JButton("Remove");
-        JButton editButton = new JButton("Edit");
+        JButton statusButton = new JButton("Toggle Status");
         
 
         assignments.setLayout(null);
 
         addButton.setBounds(20, 100, 100, 60);
         removeButton.setBounds(20, 200, 100, 60);
-        editButton.setBounds(20, 300, 100, 60);
+        statusButton.setBounds(20, 300, 100, 60);
        
         
         
@@ -43,7 +43,7 @@ public class GUI extends JFrame {
         this.add(assignmentsHold);
         this.add(addButton);
         this.add(removeButton);
-        this.add(editButton);
+        this.add(statusButton);
 
         this.setVisible(true);
 
@@ -52,6 +52,19 @@ public class GUI extends JFrame {
                 Add_GUI addFrame = new Add_GUI();
             }
         });
+
+        statusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Status_GUI statusFrame = new Status_GUI();
+            }
+        });
+
+        removeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Remove_GUI removeFrame = new Remove_GUI();
+            }
+        });
+
     }
 
     public void refresh(){
