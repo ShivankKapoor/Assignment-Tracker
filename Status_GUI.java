@@ -1,7 +1,6 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
+import java.awt.event.*;
+import java.io.IOException;
 
 public class Status_GUI extends JFrame  {
 
@@ -25,6 +24,51 @@ public class Status_GUI extends JFrame  {
         this.add(IDLabel);
         this.add(IDSubmit);
         this.setVisible(true);
+
+        IDSubmit.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String rawID = IDInput.getText();
+                if(checkIfInt(rawID)){
+                    int ID = Integer.parseInt(rawID);
+                    Tracker.changeStatus(ID);
+                }
+
+                try {
+                    Tracker.saveAndQuit();
+                } catch (IOException e1) {
+                    
+                    e1.printStackTrace();
+                }
+                Tracker.refresh();
+                setVisible(false);
+                dispose(); 
+                
+            }
+        });
+    }
+
+    private boolean checkIfInt(String what) {
+        if (what == null) {
+            return false;
+        }
+        int length = what.length();
+        if (length == 0) {
+            return false;
+        }
+        int i = 0;
+        if (what.charAt(0) == '-') {
+            if (length == 1) {
+                return false;
+            }
+            i = 1;
+        }
+        for (; i < length; i++) {
+            char c = what.charAt(i);
+            if (c < '0' || c > '9') {
+                return false;
+            }
+        }
+        return true;
     }
     
 }

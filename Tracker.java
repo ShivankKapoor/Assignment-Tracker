@@ -11,10 +11,8 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-
 public class Tracker extends JFrame {
-    
-    
+
     private static ArrayList<Assignment> track = new ArrayList<Assignment>();
     private static String fileName = "save_data.tmp";
     private static GUI x;
@@ -27,7 +25,7 @@ public class Tracker extends JFrame {
         x = new GUI();
     }
 
-    public static void refresh(){
+    public static void refresh() {
         x.setVisible(false);
         x.dispose();
         x = new GUI();
@@ -58,21 +56,35 @@ public class Tracker extends JFrame {
                 }
     }
 
-    public static void addAssignment(Assignment what){
+    public static void addAssignment(Assignment what) {
         track.add(what);
         sort(track);
     }
 
-    public static String[][] toStringArray(){
+    public static void removeAssignment(int ID) {
+        if (ID < track.size()) {
+            track.remove(ID);
+            sort(track);
+        }
+    }
+
+    public static void changeStatus(int ID){
+        if (ID < track.size()) {
+            Assignment cur = track.get(ID);
+            cur.setCompleted(!(cur.getCompleted()));
+        }
+    }
+
+    public static String[][] toStringArray() {
         String[][] r = new String[track.size()][7];
-        for(int i =0;i<track.size();i++){
-            r[i][0] = i+"";
-            r[i][1]= track.get(i).getName();
-            r[i][2]= track.get(i).getCourse();
-            r[i][3]= track.get(i).getTypeString();
-            r[i][4]= track.get(i).getDate().toString();
-            r[i][5]= track.get(i).CompletedToString();
-            r[i][6]= track.get(i).getDifficultlyString();
+        for (int i = 0; i < track.size(); i++) {
+            r[i][0] = i + "";
+            r[i][1] = track.get(i).getName();
+            r[i][2] = track.get(i).getCourse();
+            r[i][3] = track.get(i).getTypeString();
+            r[i][4] = track.get(i).getDate().toString();
+            r[i][5] = track.get(i).CompletedToString();
+            r[i][6] = track.get(i).getDifficultlyString();
         }
         return r;
     }
